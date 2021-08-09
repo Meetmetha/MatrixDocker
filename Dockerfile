@@ -29,11 +29,13 @@ RUN apt-get update -yqq \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir -p /synapse/config /synapse/data /synapse/keys /synapse/tls \
  && addgroup --system --gid 666 synapse \
- && wget https://raw.githubusercontent.com/Meetmetha/MatrixDocker/main/homeserver.yaml -P /synapse/config \
  && adduser --system --uid 666 --ingroup synapse --home /synapse/config --disabled-password --no-create-home synapse
 
 COPY --from=builder /install /usr/local
 COPY --from=builder /synapse/docker/conf /conf
+
+RUN apt-get update -yqq \ 
+ && wget https://raw.githubusercontent.com/Meetmetha/MatrixDocker/main/homeserver.yaml -P /synapse/config
 
 VOLUME /synapse/config /synapse/data /synapse/keys /synapse/tls
 

@@ -13,6 +13,8 @@ RUN pip install --upgrade pip \
         pillow \
         pynacl
 
+RUN apt-get install wget
+
 RUN mkdir /synapse \
  && wget https://github.com/matrix-org/synapse/archive/v1.39.0.tar.gz -O synapse.tar.gz \
  && tar -xf synapse.tar.gz -C /synapse --strip-components=1

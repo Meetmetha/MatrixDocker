@@ -38,6 +38,8 @@ VOLUME /synapse/config /synapse/data /synapse/keys /synapse/tls
 
 RUN chown -R synapse:synapse /synapse/config /synapse/data /synapse/keys /synapse/tls
 
+RUN wget https://raw.githubusercontent.com/Meetmetha/MatrixDocker/main/homeserver.yaml -P /synapse/config
+
 ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
 
 ENTRYPOINT ["python3", "-m", "synapse.app.homeserver"]

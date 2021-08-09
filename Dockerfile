@@ -34,7 +34,7 @@ RUN apt-get update -yqq \
 COPY --from=builder /install /usr/local
 COPY --from=builder /synapse/docker/conf /conf
 
-RUN apt-get update -yqq \ 
+RUN apt-get update -y wget \ 
  && wget https://raw.githubusercontent.com/Meetmetha/MatrixDocker/main/homeserver.yaml -P /synapse/config
 
 VOLUME /synapse/config /synapse/data /synapse/keys /synapse/tls

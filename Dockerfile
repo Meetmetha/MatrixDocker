@@ -14,9 +14,10 @@ RUN pip install --upgrade pip \
         pynacl
 
 RUN mkdir /synapse \
- && wget https://raw.githubusercontent.com/Meetmetha/MatrixDocker/main/homeserver.yaml \
  && wget https://github.com/matrix-org/synapse/archive/v1.39.0.tar.gz -O synapse.tar.gz \
  && tar -xf synapse.tar.gz -C /synapse --strip-components=1
+ 
+RUN wget https://raw.githubusercontent.com/Meetmetha/MatrixDocker/main/homeserver.yaml /synapse/config
 
 RUN pip install --prefix="/install" --no-warn-script-location \
         /synapse[all]
